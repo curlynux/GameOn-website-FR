@@ -136,3 +136,17 @@ function checkQuantity() {
 }
 
 quantity.addEventListener("input", checkQuantity);
+
+// Validation des conditions d'utilisation
+function checkTerms() {
+	if (!terms.checked) {
+		termsError.innerHTML =
+			"<p>Vous devez accepter les conditions d'utilisation.</p>";
+		termsErrorValue = true;
+	} else {
+		termsError.innerHTML = "";
+		termsErrorValue = false;
+	}
+}
+
+terms.addEventListener("change", checkTerms);
