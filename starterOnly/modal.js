@@ -70,3 +70,16 @@ function checkFirstName() {
 		}
 	}
 }
+
+firstName.addEventListener("input", checkFirstName);
+
+// Validation du nom
+function checkLastName() {
+	if (lastName.value == "") {
+		lastNameError.innerHTML = "<p>Vous devez renseigner un Nom.</p>";
+		lastNameErrorValue = true;
+	} else {
+		lastNameError.innerHTML = "";
+		lastNameErrorValue = false;
+	}
+}
