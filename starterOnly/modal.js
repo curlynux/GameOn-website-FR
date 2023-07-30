@@ -53,3 +53,20 @@ const birthdateError = document.getElementById("#birthdateError");
 const quantityError = document.getElementById("#quantityError");
 const locationError = document.getElementById("#locationError");
 const termsError = document.getElementById("#termsError");
+
+// Validation du prénom
+function checkFirstName() {
+	if (firstName.value == "") {
+		firstNameError.innerHTML = "<p>Vous devez renseigner un Prénom.</p>";
+		firstNameErrorValue = true;
+	} else {
+		if (firstName.value.length < 2) {
+			firstNameError.innerHTML =
+				"<p>Le Prénom doit faire plus de 2 caractères.</p>";
+			firstNameErrorValue = true;
+		} else {
+			firstNameError.innerHTML = "";
+			firstNameErrorValue = false;
+		}
+	}
+}
