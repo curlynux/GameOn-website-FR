@@ -150,3 +150,38 @@ function checkTerms() {
 }
 
 terms.addEventListener("change", checkTerms);
+
+// Validation finale du formulaire
+function validate() {
+	checkFirstName();
+	checkLastName();
+	checkEmail();
+	checkBirthdate();
+	checkQuantity();
+	checkTerms();
+
+	if (enabledChoice == "") {
+		locationError.innerHTML = "<p>Vous devez choisir un tournoi.</p>";
+		return false;
+	}
+
+	if (
+		firstNameErrorValue ||
+		lastNameErrorValue ||
+		emailErrorValue ||
+		birthdateErrorValue ||
+		quantityErrorValue ||
+		termsErrorValue
+	) {
+		console.log("Erreur form");
+		return false;
+	}
+
+	closeModal();
+	confirmation();
+
+	form.reset();
+	enabledChoice = [];
+
+	return false;
+}
