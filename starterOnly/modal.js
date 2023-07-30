@@ -32,3 +32,24 @@ function closeModal() {
 		modalBackground.style.animationPlayState = "paused";
 	});
 }
+
+// Validation du formulaire
+// Récupération des données du formulaire
+const form = document.getElementById("#inscriptionForm");
+const confirmationModal = document.getElementById("#confirmModal");
+const firstName = document.getElementById("#firstName");
+const lastName = document.getElementById("#lastName");
+const email = document.getElementById("#email");
+const birthdate = document.getElementById("#birthdate");
+const quantity = document.getElementById("#quantity");
+const locationsContainer = document.getElementById("#locationsContainer");
+const locations = locationsContainer.getElementById('[name="location"]');
+const terms = document.getElementById("#checkbox1");
+
+const firstNameError = document.getElementById("#firstNameError");
+const lastNameError = document.getElementById("#lastNameError");
+const emailError = document.getElementById("#emailError");
+const birthdateError = document.getElementById("#birthdateError");
+const quantityError = document.getElementById("#quantityError");
+const locationError = document.getElementById("#locationError");
+const termsError = document.getElementById("#termsError");
