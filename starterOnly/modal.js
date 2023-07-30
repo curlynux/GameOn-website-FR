@@ -106,3 +106,19 @@ function checkEmail() {
 		}
 	}
 }
+
+email.addEventListener("input", checkEmail);
+
+// Validation de la Date de naissance
+function checkBirthdate() {
+	if (birthdate.value == "") {
+		birthdateError.innerHTML =
+			"<p>Vous devez renseigner une date de naissance.</p>";
+		birthdateErrorValue = true;
+	} else {
+		birthdateError.innerHTML = "";
+		birthdateErrorValue = false;
+	}
+}
+
+birthdate.addEventListener("input", checkBirthdate);
