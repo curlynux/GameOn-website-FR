@@ -122,3 +122,17 @@ function checkBirthdate() {
 }
 
 birthdate.addEventListener("input", checkBirthdate);
+
+// Validation du nombre de tournois
+function checkQuantity() {
+	if (quantity.value == "") {
+		quantityError.innerHTML =
+			"<p>Vous devez indiquer votre nombre de participations.</p>";
+		quantityErrorValue = true;
+	} else {
+		quantityError.innerHTML = "";
+		quantityErrorValue = false;
+	}
+}
+
+quantity.addEventListener("input", checkQuantity);
