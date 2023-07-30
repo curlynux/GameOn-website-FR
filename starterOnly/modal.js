@@ -83,3 +83,26 @@ function checkLastName() {
 		lastNameErrorValue = false;
 	}
 }
+
+lastName.addEventListener("input", checkLastName);
+
+// Validation de l'email
+var defaultRegexEmail = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]$/;
+var regexEmail =
+	/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)$/;
+
+function checkEmail() {
+	if (email.value == "") {
+		emailError.innerHTML = "<p>Vous devez renseigner une adresse email.</p>";
+		emailErrorValue = true;
+	} else {
+		if (!regexEmail.test(email.value)) {
+			emailError.innerHTML =
+				"<p>L'adresse mail doit respecter ce format : monmail@email.com</p>";
+			emailErrorValue = true;
+		} else {
+			emailError.innerHTML = "";
+			emailErrorValue = false;
+		}
+	}
+}
