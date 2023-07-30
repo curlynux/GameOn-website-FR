@@ -185,3 +185,11 @@ function validate() {
 
 	return false;
 }
+
+// Affichage de la confirmation après validation
+function confirmation() {
+	confirmationModal.style.display = "flex";
+	setTimeout(function () {
+		confirmationModal.style.display = "none";
+	}, 7000);
+}
