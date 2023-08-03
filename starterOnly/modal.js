@@ -1,194 +1,55 @@
-// Ouverture/Fermeture du menu Responsive
 function editNav() {
-	var x = document.getElementById("myTopnav");
-	if (x.className === "topnav") {
-		x.className += " responsive";
-	} else {
-		x.className = "topnav";
-	}
+  var x = document.getElementById('myTopnav');
+  if (x.className === 'topnav') {
+    x.className += ' responsive';
+  } else {
+    x.className = 'topnav';
+  }
 }
 
-// Elements de la fenêtre modale
-const modalBackground = document.getElementsByClassName("bground");
-const registerButton = document.querySelectorAll(".register-btn");
-const closeButton = document.getElementsByClassName("close");
-// Ouverture modale
+// DOM Elements
+const modalbg = document.querySelector('.bground');
+const modalBtn = document.querySelectorAll('.modal-btn');
+const formData = document.querySelectorAll('.formData');
+const modalClose = document.querySelector('span.close');
+const form = document.getElementById('form');
+const finish = document.querySelector('.finish');
+const hero = document.getElementById('hero');
 
-registerButton.forEach((button) => {
-	button.addEventListener("click", launchModal);
-});
+// launch modal event
+modalBtn.forEach((btn) => btn.addEventListener('click', launchModal));
 
+// launch modal form
 function launchModal() {
-	Array.from(modalBackground).map((background) => {
-		background.style.display = "flex";
-	});
+  modalbg.style.display = 'block';
+  if (window.innerWidth < 500) {
+    hero.style.display = 'none';
+  }
 }
+
+modalClose.addEventListener('click', closeModal);
+finish.addEventListener('click', closeModal);
+
+/**
+ * La fonction closeModal sert a fermer la modale au clic du boutton X
+ * Elle retire les bordures rouge qui sont présente lors d'un mauvais remplissage de champ
+ * Elle retire ce qui est mis dans les champs
+ */
 
 function closeModal() {
-	modalBackground.style.animationPlayState = "running";
-	setTimeout(() => {
-		modalBackground.style.display = "none";
-		modalBackground.style.animationPlayState = "paused";
-	});
-}
+  const error = document.querySelectorAll('.error');
+  error.forEach(function (element) {
+    element.style.display = 'none';
+  });
+  formFirst.classList.remove('error-border');
+  formLast.classList.remove('error-border');
+  formEmail.classList.remove('error-border');
+  formBirthdate.classList.remove('error-border');
+  formQuantity.classList.remove('error-border');
 
-// Validation du formulaire
-// Récupération des données du formulaire
-const form = document.getElementById("inscriptionForm");
-const confirmationModal = document.getElementById("confirmModal");
-const firstName = document.getElementById("firstName");
-const lastName = document.getElementById("lastName");
-const email = document.getElementById("email");
-const birthdate = document.getElementById("birthdate");
-const quantity = document.getElementById("quantity");
-const locationsContainer = document.getElementById("locationsContainer");
-const locations = locationsContainer.querySelectorAll('[name="location"]');
-const terms = document.getElementById("checkbox1");
-
-const firstNameError = document.getElementById("#firstNameError");
-const lastNameError = document.getElementById("#lastNameError");
-const emailError = document.getElementById("#emailError");
-const birthdateError = document.getElementById("#birthdateError");
-const quantityError = document.getElementById("#quantityError");
-const locationError = document.getElementById("#locationError");
-const termsError = document.getElementById("#termsError");
-
-// Validation du prénom
-function checkFirstName() {
-	if (firstName.value == "") {
-		firstNameError.innerHTML = "<p>Vous devez renseigner un Prénom.</p>";
-		firstNameErrorValue = true;
-	} else {
-		if (firstName.value.length < 2) {
-			firstNameError.innerHTML =
-				"<p>Le Prénom doit faire plus de 2 caractères.</p>";
-			firstNameErrorValue = true;
-		} else {
-			firstNameError.innerHTML = "";
-			firstNameErrorValue = false;
-		}
-	}
-}
-
-firstName.addEventListener("input", checkFirstName);
-
-// Validation du nom
-function checkLastName() {
-	if (lastName.value == "") {
-		lastNameError.innerHTML = "<p>Vous devez renseigner un Nom.</p>";
-		lastNameErrorValue = true;
-	} else {
-		lastNameError.innerHTML = "";
-		lastNameErrorValue = false;
-	}
-}
-
-lastName.addEventListener("input", checkLastName);
-
-// Validation de l'email
-var defaultRegexEmail = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]$/;
-var regexEmail =
-	/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)$/;
-
-function checkEmail() {
-	if (email.value == "") {
-		emailError.innerHTML = "<p>Vous devez renseigner une adresse email.</p>";
-		emailErrorValue = true;
-	} else {
-		if (!regexEmail.test(email.value)) {
-			emailError.innerHTML =
-				"<p>L'adresse mail doit respecter ce format : monmail@email.com</p>";
-			emailErrorValue = true;
-		} else {
-			emailError.innerHTML = "";
-			emailErrorValue = false;
-		}
-	}
-}
-
-email.addEventListener("input", checkEmail);
-
-// Validation de la Date de naissance
-function checkBirthdate() {
-	if (birthdate.value == "") {
-		birthdateError.innerHTML =
-			"<p>Vous devez renseigner une date de naissance.</p>";
-		birthdateErrorValue = true;
-	} else {
-		birthdateError.innerHTML = "";
-		birthdateErrorValue = false;
-	}
-}
-
-birthdate.addEventListener("input", checkBirthdate);
-
-// Validation du nombre de tournois
-function checkQuantity() {
-	if (quantity.value == "") {
-		quantityError.innerHTML =
-			"<p>Vous devez indiquer votre nombre de participations.</p>";
-		quantityErrorValue = true;
-	} else {
-		quantityError.innerHTML = "";
-		quantityErrorValue = false;
-	}
-}
-
-quantity.addEventListener("input", checkQuantity);
-
-// Validation des conditions d'utilisation
-function checkTerms() {
-	if (!terms.checked) {
-		termsError.innerHTML =
-			"<p>Vous devez accepter les conditions d'utilisation.</p>";
-		termsErrorValue = true;
-	} else {
-		termsError.innerHTML = "";
-		termsErrorValue = false;
-	}
-}
-
-terms.addEventListener("change", checkTerms);
-
-// Validation finale du formulaire
-function validate() {
-	checkFirstName();
-	checkLastName();
-	checkEmail();
-	checkBirthdate();
-	checkQuantity();
-	checkTerms();
-
-	if (enabledChoice == "") {
-		locationError.innerHTML = "<p>Vous devez choisir un tournoi.</p>";
-		return false;
-	}
-
-	if (
-		firstNameErrorValue ||
-		lastNameErrorValue ||
-		emailErrorValue ||
-		birthdateErrorValue ||
-		quantityErrorValue ||
-		termsErrorValue
-	) {
-		console.log("Erreur form");
-		return false;
-	}
-
-	closeModal();
-	confirmation();
-
-	form.reset();
-	enabledChoice = [];
-
-	return false;
-}
-
-// Affichage de la confirmation après validation
-function confirmation() {
-	confirmationModal.style.display = "flex";
-	setTimeout(function () {
-		confirmationModal.style.display = "none";
-	}, 7000);
+  modalbg.removeAttribute('style');
+  form.reset();
+  formulary.style.visibility = 'visible';
+  modalValidate.style.display = 'none';
+  hero.style.display = 'grid';
 }
