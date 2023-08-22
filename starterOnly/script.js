@@ -89,7 +89,9 @@ function validationEmail() {
 
 function validationBirthdate() {
 	if (
+		
 		formBirthdate.value === "1111-11-11" ||
+
 		!formBirthdate.value.match(
 			/^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/
 		)
